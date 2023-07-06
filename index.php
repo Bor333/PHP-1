@@ -1,5 +1,11 @@
 <?php
 
-$name = "Алекс";
+function renderTemplate($page, $content = '', $menu = '') {
+    ob_start();
+    include $page . ".php";
+    return ob_get_clean();
+}
 
-echo "Привет, {$name}name!";
+$menu =  renderTemplate('menu');
+$content =  renderTemplate('about');
+echo renderTemplate('layout', $content, $menu);
