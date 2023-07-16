@@ -7,5 +7,9 @@ define('IMG_SMALL_DIR', 'gallery_img/small/');
 
 include '../engine/functions.php';
 include '../engine/catalog.php';
-include '../engine/images.php';
+include '../engine/gallery.php';
+include '../engine/upload.php';
+include '../engine/messages.php';
+include '../engine/checks.php';
 include '../classSimpleImage.php';
+

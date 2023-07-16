@@ -2,7 +2,6 @@
 
 include dirname(__DIR__). '/config/config.php';
 
-$big = getImages();
 
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
@@ -19,7 +18,14 @@ switch ($page) {
         $params['catalog'] = getCatalog();
         break;
     case 'gallery':
-        $params['big'] = getImages();
+        if (!empty($_FILES)) {
+            if (checks()) {
+                $params['message'] = getMessages()[checks()];
+            } else {
+                upload();
+            }
+        }
+        $params['big'] = getGallery();
         break;
     case 'apicatalog':
         echo json_encode(getCatalog(), JSON_UNESCAPED_UNICODE);
