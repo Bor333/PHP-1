@@ -1,8 +1,4 @@
 <?php
-define('IMG_BIG_DIR', 'gallery_img/big/');
-define('IMG_SMALL_DIR', 'gallery_img/small/');
-include 'classSimpleImage.php';
-
 $messages = [
     'OK' => 'Файл загружен',
     'ERROR' => 'Ошибка',
@@ -15,6 +11,30 @@ $messages = [
 if (!empty($_FILES)) {
     var_dump($_FILES);
 
+    if ($_FILES["myfile"]["size"] > 1024 * 5 * 1024) {
+        header("Location: /?page=gallery&message=ERROR_SIZE");
+        die();
+    }
+
+    $blacklist = array(".php", ".phtml", ".php3", ".php4");
+    foreach ($blacklist as $item) {
+        if(preg_match("/$item\$/i", $_FILES['myfile']['name'])) {
+            header("Location: /?page=gallery&message=ERROR_SCRIPT");
+            die();
+        }
+    }
+
+    if($_FILES['myfile']['type'] != "image/jpeg") {
+        header("Location: /?page=gallery&message=ERROR_ERROR_TYPE");
+        die();
+    }
+
+    $imageinfo = getimagesize($_FILES['myfile']['tmp_name']);
+    if($imageinfo['mime'] != 'image/gif' && $imageinfo['mime'] != 'image/jpeg') {
+        header("Location: /?page=gallery&message=ERROR_NOT_IMAGE");
+        die();
+    }
+
     if (move_uploaded_file($_FILES['myfile']['tmp_name'], IMG_BIG_DIR . $_FILES['myfile']['name'])) {
         $image = new SimpleImage();
         $image->load(IMG_BIG_DIR . $_FILES['myfile']['name']);
@@ -22,16 +42,13 @@ if (!empty($_FILES)) {
         $image->save(IMG_SMALL_DIR . $_FILES['myfile']['name']);
         $big = scandir(IMG_BIG_DIR);
         $big = array_slice($big, 2);
-        header("Location: /?page=gallery");
+        header("Location: /?page=gallery&message=OK");
     } else {
         header("Location: /?page=gallery");
     }
 }
 
-$big = scandir(IMG_BIG_DIR);
-$big = array_slice($big, 2);
-
-
+$message = $messages[$_GET['message']];
 ?>
 <div id="main">
     <div class="post_title"><h2>Моя галерея</h2></div>
@@ -42,6 +59,7 @@ $big = array_slice($big, 2);
         <?php endforeach; ?>
     </div>
 </div>
+<?= $message ?>
 <form method="post" enctype="multipart/form-data">
     <input type="file" name="myfile">
     <input type="submit" name="Загрузить">

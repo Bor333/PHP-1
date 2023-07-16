@@ -14,9 +14,14 @@ function renderTemplate($page, $params = [])
     extract($params);
 
     $fileName = TEMPLATES_DIR . $page . ".php";
+
     if (file_exists($fileName)) {
         include $fileName;
     }
 
     return ob_get_clean();
 }
+
+
+
+

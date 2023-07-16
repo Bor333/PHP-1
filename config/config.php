@@ -1,5 +1,11 @@
 <?php
-define('TEMPLATES_DIR', dirname(__DIR__) . '/templates/');
-define('LAYOUTS_DIR', dirname(__DIR__). 'layouts/');
+define('TEMPLATES_DIR', '../templates/');
+define('LAYOUTS_DIR', 'layouts/');
 
-include dirname(__DIR__). '/engine/functions.php';
+define('IMG_BIG_DIR', 'gallery_img/big/');
+define('IMG_SMALL_DIR', 'gallery_img/small/');
+
+include '../engine/functions.php';
+include '../engine/catalog.php';
+include '../engine/images.php';
+include '../classSimpleImage.php';
