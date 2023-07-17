@@ -1,5 +1,5 @@
 <?php
-define('TEMPLATES_DIR', '../templates/');
+define('TEMPLATES_DIR', dirname(__DIR__) . '/templates/');
 define('LAYOUTS_DIR', 'layouts/');
 
 define('IMG_BIG_DIR', 'gallery_img/big/');
