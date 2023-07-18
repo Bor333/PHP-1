@@ -1,15 +1,17 @@
 <?php
-define('TEMPLATES_DIR', dirname(__DIR__) . '/templates/');
+
+define('ROOT', dirname(__DIR__));
+
+define('TEMPLATES_DIR', ROOT . '/templates/');
 define('LAYOUTS_DIR', 'layouts/');
 
 define('IMG_BIG_DIR', 'gallery_img/big/');
 define('IMG_SMALL_DIR', 'gallery_img/small/');
 
-include '../engine/functions.php';
-include '../engine/catalog.php';
-include '../engine/gallery.php';
-include '../engine/upload.php';
-include '../engine/messages.php';
-include '../engine/checks.php';
-include '../classSimpleImage.php';
+include ROOT . '/engine/functions.php';
+include ROOT . '/engine/catalog.php';
+include ROOT . '/engine/gallery.php';
+include ROOT . '/engine/upload.php';
+include ROOT . '/engine/messages.php';
+include ROOT . '/classSimpleImage.php';
 

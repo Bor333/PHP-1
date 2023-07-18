@@ -9,7 +9,7 @@
 </div>
 <?= $message ?>
 <form method="post" enctype="multipart/form-data">
-    <input type="file" name="myfile">
-    <input type="submit" name="Загрузить">
+    <input type="file" name="userfile">
+    <input type="submit" name="load">
 </form>
 

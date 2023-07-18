@@ -2,14 +2,14 @@
 
 include dirname(__DIR__). '/config/config.php';
 
-
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 } else {
     $page = 'index';
 }
 
-$params = ['count' => 2];
+$params = [];
+$layout = 'main';
 switch ($page) {
     case 'index':
         $params['name'] = 'Админ';
@@ -18,19 +18,18 @@ switch ($page) {
         $params['catalog'] = getCatalog();
         break;
     case 'gallery':
-        if (!empty($_FILES)) {
-            if (checks()) {
-                $params['message'] = getMessages()[checks()];
-            } else {
-                upload();
-            }
+        if (isset($_POST['load'])) {
+            loadImage();
         }
-        $params['big'] = getGallery();
+
+        $layout = 'gallery';
+        $params['message'] = getMessages()[$_GET['message']];
+        $params['big'] = getGallery(IMG_BIG_DIR);
         break;
     case 'apicatalog':
         echo json_encode(getCatalog(), JSON_UNESCAPED_UNICODE);
         die();
 }
 
-echo render($page, $params);
+echo render($page, $params, $layout);
 
