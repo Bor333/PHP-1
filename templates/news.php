@@ -2,6 +2,6 @@
 
 <?php foreach ($news as $item): ?>
 <div>
-    <a href="?page=newsone&id=<?=$item['id']?>"><b><?= $item['title'] ?></b></a>
+    <a href="/newsone?/id=<?=$item['id']?>"><b><?= $item['title'] ?></b></a>
 </div>
 <?php endforeach; ?>

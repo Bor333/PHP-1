@@ -2,10 +2,12 @@
 
 include dirname(__DIR__). '/config/config.php';
 
-if (isset($_GET['page'])) {
-    $page = $_GET['page'];
-} else {
+$url_array = explode('/', $_SERVER['REQUEST_URI']);
+
+if ($url_array[1] == "") {
     $page = 'index';
+} else {
+    $page = $url_array[1];
 }
 
 $params = [];
