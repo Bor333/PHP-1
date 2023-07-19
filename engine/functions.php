@@ -1,6 +1,6 @@
 <?php
 
-function render($page, $params = [], $layout = 'layout')
+function render($page, $params = [], $layout = 'main')
 {
     return renderTemplate(LAYOUTS_DIR . $layout, [
         'menu' => renderTemplate('menu', $params),
