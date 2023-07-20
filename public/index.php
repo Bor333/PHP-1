@@ -1,9 +1,14 @@
 <?php
 
-include dirname(__DIR__). '/config/config.php';
+include dirname(__DIR__) . '/config/config.php';
 
 $url_array = explode('/', $_SERVER['REQUEST_URI']);
 
+$url_param = explode('?', $_SERVER['REQUEST_URI']);
+$url_param =  explode('=', $url_param[1]);
+//var_dump($url_param);
+$url_param_name = $url_param[0];
+$url_param_value = $url_param[1];
 if ($url_array[1] == "") {
     $page = 'index';
 } else {
@@ -26,8 +31,8 @@ switch ($page) {
         if (isset($_POST['load'])) {
             loadImage();
         }
-        $params['message'] = getMessages()[$_GET['message']];
-        $params['big'] = getGallery(IMG_BIG_DIR);
+        $params[$url_param[0]] = $url_param[1];
+        $params['big'] = getGallery();
         break;
     case 'news':
         $params['news'] = getNews();

@@ -17,7 +17,6 @@ include ROOT . '/engine/db.php';
 include ROOT . '/engine/functions.php';
 include ROOT . '/engine/catalog.php';
 include ROOT . '/engine/gallery.php';
-include ROOT . '/engine/upload.php';
 include ROOT . '/engine/messages.php';
 include ROOT . '/engine/news.php';
 include ROOT . '/classSimpleImage.php';

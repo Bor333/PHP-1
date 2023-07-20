@@ -1,9 +1,13 @@
 <?php
 
-function getGallery($path)
+function getGallery()
 {
-    $big = scandir($path);
-    return array_slice($big, 2);
+    return getAssocResult("SELECT * FROM gallery");
+}
+
+function getImage($id)
+{
+    return getOneResult("SELECT * FROM gallery WHERE id = {$id}");
 }
 
 function loadImage()
@@ -37,9 +41,9 @@ function loadImage()
         $image->load(IMG_BIG_DIR . $_FILES['userfile']['name']);
         $image->resizeToWidth(250);
         $image->save(IMG_SMALL_DIR . $_FILES['userfile']['name']);
-        header("Location: /?page=gallery&message=OK");
+        header("Location: /gallery/?message=OK");
     } else {
-        header("Location: /?page=gallery");
+        header("Location: /gallery/?message=ERROR");
     }
 
 }
