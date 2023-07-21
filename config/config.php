@@ -10,8 +10,8 @@ define('DB', 'php-1');
 define('TEMPLATES_DIR', ROOT . '/templates/');
 define('LAYOUTS_DIR', 'layouts/');
 
-define('IMG_BIG_DIR', 'gallery_img/big/');
-define('IMG_SMALL_DIR', 'gallery_img/small/');
+define('IMG_BIG_DIR',  '/gallery_img/big/');
+define('IMG_SMALL_DIR', '/gallery_img/small/');
 
 include ROOT . '/engine/db.php';
 include ROOT . '/engine/functions.php';
